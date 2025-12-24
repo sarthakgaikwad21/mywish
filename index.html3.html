@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Vidisha & Vedanti 🎉</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ff0080, #7928ca, #00c9a7);
+}
+
+/* ---------- LOCK SCREEN ---------- */
+#lockScreen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #000428, #004e92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 10;
+}
+
+.lock-box {
+  background: rgba(255,255,255,0.12);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+}
+
+.lock-box input {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 12px;
+}
+
+.lock-box button {
+  margin-top: 18px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(45deg, #ffdd00, #ff8c00);
+  cursor: pointer;
+}
+
+#error {
+  color: #ff6b6b;
+  margin-top: 10px;
+  display: none;
+}
+
+/* ---------- COUNTDOWN ---------- */
+#countdown {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: white;
+  font-size: 6rem;
+  font-weight: 800;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+}
+
+/* ---------- MAIN PAGE ---------- */
+#main {
+  display: none;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 3.2rem;
+}
+
+.names {
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.message {
+  margin-top: 25px;
+  font-size: 1.2rem;
+  max-width: 720px;
+}
+
+.from {
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+/* ---------- SLIDESHOW PAGE ---------- */
+#slideshowPage {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  color: white;
+  text-align: center;
+}
+
+/* ✅ PERFECT SINGLE SCREEN LAYOUT */
+.slide-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 14px;
+}
+
+/* ✅ IMAGE FIXED & SMALL */
+.slide-img {
+  width: 170px;
+  max-height: 32vh;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.3);
+}
+
+/* ✅ TEXT FITS FULL SCREEN */
+.slide-text {
+  max-width: 900px;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.title-line {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 BACKGROUND MUSIC -->
+<audio id="bgm" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b1db64b94.mp3?filename=birthday-happy-112194.mp3">
+</audio>
+
+<!-- 🔐 LOCK SCREEN -->
+<div id="lockScreen">
+  <div class="lock-box">
+    <h2>🎁 Enter Secret Code</h2>
+    <input type="password" id="code" placeholder="Secret Code">
+    <br>
+    <button onclick="unlock()">Unlock</button>
+    <div id="error">❌ Wrong code</div>
+  </div>
+</div>
+
+<!-- ⏳ COUNTDOWN -->
+<div id="countdown">5</div>
+
+<!-- 🎉 MAIN PAGE -->
+<div id="main">
+  <div class="container">
+    <h1>🎂 Happy Birthday 🎂</h1>
+    <div class="names">Vidisha & Vedanti 🎉</div>
+
+    <div class="message">
+      Wish you both a very happy birthday 🎉<br>
+      May your birthday bring lots of happiness, joy and success ✨
+    </div>
+
+    <div class="from">— From me, <strong>Sarthak</strong></div>
+  </div>
+</div>
+
+<!-- 📸 FINAL SLIDESHOW PAGE -->
+<div id="slideshowPage">
+  <div class="slide-container">
+    <img src="photo.jpg" class="slide-img" alt="Vidisha and Vedanti">
+
+    <div class="slide-text">
+      <div class="title-line">
+        Two souls, one beautiful bond — happiest birthday to the most amazing twins I have ever met & seen.
+      </div>
+
+      Vedanti and Vidisha, two laughs in one frame.<br>
+      Same day, same date, still never the same.<br><br>
+
+      Happy for your parents who gave you your names,<br>
+      And you always made them proud,<br>
+      By winning every swimming games.
+    </div>
+  </div>
+</div>
+
+<script>
+const SECRET_CODE = "2411";
+let count = 5;
+
+function unlock() {
+  if (document.getElementById("code").value === SECRET_CODE) {
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("countdown").style.display = "flex";
+    startCountdown();
+  } else {
+    document.getElementById("error").style.display = "block";
+  }
+}
+
+function startCountdown() {
+  const cd = document.getElementById("countdown");
+  const timer = setInterval(() => {
+    count--;
+    cd.textContent = count;
+    if (count === 0) {
+      clearInterval(timer);
+      cd.style.display = "none";
+      document.getElementById("main").style.display = "block";
+      document.getElementById("bgm").play();
+
+      setTimeout(() => {
+        document.getElementById("main").style.display = "none";
+        document.getElementById("slideshowPage").style.display = "block";
+      }, 7000);
+    }
+  }, 1000);
+}
+</script>
+
+</body>
+</html>
